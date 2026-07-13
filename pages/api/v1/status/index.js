@@ -14,10 +14,7 @@ async function status(request, response) {
     text: "SELECT count(*)::int AS conexoes_usadas FROM pg_stat_activity where datname = $1;",
     values: [databaseName],
   });
-  console.log(conexoesUsadas);
-  //"SELECT count(*)::int AS conexoes_usadas FROM pg_stat_activity where datname = '" +
-  //"SELECT count(*)::int AS conexoes_usadas FROM pg_stat_activity where datname = 'local_db';",
-
+  
   const databaseOpenedConnectionsResult = await database.query(
     "SELECT * from pg_stat_activity",
   );
@@ -27,6 +24,7 @@ async function status(request, response) {
     updated_at: updateAt,
     dependencies: {
       database: {
+        url_banco: process.env.POSTGRES_HOST,
         banco_versao: bancoVersao.rows[0].server_version,
         conexoes_maximas: conexoesMaximas.rows[0].max_conexoes,
         conexoes_usadas: conexoesUsadas.rows[0].conexoes_usadas,
