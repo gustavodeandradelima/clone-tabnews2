@@ -1,7 +1,7 @@
 {
   "name": "clone-tabnews2",
   "version": "1.0.0",
-  "description": "Implementação do tabnews.com.br para aprendizado",
+  "description": "Implementação do tabnews.com.br para aprendizado.",
   "main": "index.js",
   "scripts": {
     "test": "npm run services:up && npm run wait-for-postgres && concurrently --names next,jest --hide next --kill-others -k --success command-jest \"next dev\" \"jest --runInBand --verbose\"",
