@@ -14,7 +14,7 @@ async function status(request, response) {
     text: "SELECT count(*)::int AS conexoes_usadas FROM pg_stat_activity where datname = $1;",
     values: [databaseName],
   });
-  
+
   const databaseOpenedConnectionsResult = await database.query(
     "SELECT * from pg_stat_activity",
   );
